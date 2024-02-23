@@ -1,44 +1,63 @@
 <div class="container">
-  <h1>Flight Search</h1>
-  
-  <div class="form-group">
-    <label for="fromAirport">From Airport:</label>
-    <select class="form-control" id="fromAirport" [(ngModel)]="fromAirport">
-      <option value="0">Select an airport</option>
-      <option *ngFor="let airport of airports" [value]="airport.id">{{ airport.name }}</option>
-    </select>
-  </div>
-  
-  <div class="form-group">
-    <label for="toAirport">To Airport:</label>
-    <select class="form-control" id="toAirport" [(ngModel)]="toAirport">
-      <option value="0">Select an airport</option>
-      <option *ngFor="let airport of airports" [value]="airport.id">{{ airport.name }}</option>
-    </select>
-  </div>
-  
-  <div class="form-group">
-    <label for="travelDate">Travel Date:</label>
-    <input type="date" class="form-control" id="travelDate" [(ngModel)]="travelDate">
-  </div>
-  
-  <button class="btn btn-primary" (click)="searchFlight()">Search</button>
-  
-  <div class="flight-list">
-    <h2>Flight List</h2>
-    <ul>
-      <li *ngFor="let flight of flightList">
-        <span>{{ flight.name }}</span>
-        <button class="btn btn-success" (click)="bookTicket(flight)">Book</button>
-      </li>
-    </ul>
-  </div>
-  
-  <div id="bookModel" class="modal">
-    <div class="modal-content">
-      <span class="close" (click)="closeModel()">&times;</span>
-      <h3>Book Ticket</h3>
-      <!-- Add your book ticket form here -->
+    <h1>Flight Search</h1>
+    
+    <div class="form-group">
+        <label for="fromAirport">From Airport:</label>
+        <select class="form-control" id="fromAirport" [(ngModel)]="fromAirport">
+            <option value="0">Select an airport</option>
+            <option *ngFor="let airport of airports" [value]="airport.id">{{ airport.name }}</option>
+        </select>
     </div>
-  </div>
+    
+    <div class="form-group">
+        <label for="toAirport">To Airport:</label>
+        <select class="form-control" id="toAirport" [(ngModel)]="toAirport">
+            <option value="0">Select an airport</option>
+            <option *ngFor="let airport of airports" [value]="airport.id">{{ airport.name }}</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="travelDate">Travel Date:</label>
+        <input type="date" class="form-control" id="travelDate" [(ngModel)]="travelDate">
+    </div>
+    
+    <button class="btn btn-primary" (click)="searchFlight()">Search</button>
+    
+    <div class="flight-list">
+        <h2>Flight List</h2>
+        <ul>
+            <li *ngFor="let flight of flightList">
+                <span>{{ flight.name }}</span>
+                <button class="btn btn-success" (click)="bookTicket(flight)">Book</button>
+            </li>
+        </ul>
+    </div>
+    
+    <div id="bookModel" class="modal">
+        <div class="modal-content">
+            <span class="close" (click)="closeModel()">&times;</span>
+            <h3>Book Ticket</h3>
+            <!-- Add your book ticket form here -->
+            <form>
+                <div class="form-group">
+                    <label for="travelerName">Traveler Name:</label>
+                    <input type="text" class="form-control" id="travelerName" [(ngModel)]="passengerObj.travelerName">
+                </div>
+                <div class="form-group">
+                    <label for="contactNo">Contact No:</label>
+                    <input type="text" class="form-control" id="contactNo" [(ngModel)]="passengerObj.contactNo">
+                </div>
+                <div class="form-group">
+                    <label for="aadharNo">Aadhar No:</label>
+                    <input type="text" class="form-control" id="aadharNo" [(ngModel)]="passengerObj.aadharNo">
+                </div>
+                <div class="form-group">
+                    <label for="seatNo">Seat No:</label>
+                    <input type="text" class="form-control" id="seatNo" [(ngModel)]="passengerObj.seatNo">
+                </div>
+                <button class="btn btn-primary" (click)="addPassenger()">Add Passenger</button>
+            </form>
+        </div>
+    </div>
 </div>

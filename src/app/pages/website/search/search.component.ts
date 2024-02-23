@@ -14,10 +14,30 @@ export class SearchComponent implements OnInit {
   toAirport: number=0;
   travelDate: string="";
   flightList: any[] = [];
+  passengerObj: any = {
+    "travelerName": "string",
+    "contactNo": "string",
+    "aadharNo": "string",
+    "seatNo": "string",
+  }
+  bookingObj: any = {
+    "flightId": 0,
+    "customerId": 0,
+    "bookgingDate": new Date(),
+    "totalAmount": 0,
+    "FlightBookingDetails": [ ]
+  }
+  passengerList: any[] = [];
   constructor(private master: MasterService) { }
 
   ngOnInit(): void {
     this.loadAirports();
+  }
+
+  addPassenger() {
+    const obj = JSON.stringify(this.passengerObj);
+    const newObj = JSON.parse(obj);
+    this.passengerList.push(newObj);
   }
 
 
