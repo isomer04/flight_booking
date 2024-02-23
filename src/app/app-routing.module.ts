@@ -9,54 +9,67 @@ import { BookingsComponent } from './pages/admin/bookings/bookings.component';
 import { CityComponent } from './pages/admin/city/city.component';
 import { NewFlightComponent } from './pages/admin/new-flight/new-flight.component';
 import { LoginComponent } from './pages/admin/login/login.component';
+import { AllFlightsComponent } from './pages/admin/all-flights/all-flights.component';
+import { WebsiteLandingComponent } from './pages/website/website-landing/website-landing.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'search',
-    pathMatch: 'full'
+    pathMatch:'full'
   },
   {
-    path: 'search',
-    component: SearchComponent,
-    title: 'Search Flights'
-  },
-  {
-    path: 'book-flight',
-    component: BookflightComponent,
-    title: 'Book New Ticket'
-  },
-  {
-    path: 'Bookings',
-    component: MyBookingsComponent,
-    title: 'My-Bookings'
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: '',
-    component: LayoutComponent,
+    path:'',
+    component:WebsiteLandingComponent,
     children: [
       {
-        path: 'airport',
-        component: AirportComponent,
+        path:'search',
+        component:SearchComponent,
+        title:'Search Flight'
       },
       {
-        path: 'city',
-        component: CityComponent
+        path: 'book-flight',
+        component:BookflightComponent,
+        title: 'Book New Ticket'
       },
       {
-        path: 'all-bookings',
-        component: BookingsComponent
+        path:'Bookings',
+        component: MyBookingsComponent,
+        title: 'My-Bookings'
+      },
+    ]
+  }, 
+  {
+    path:'login',
+    component:LoginComponent
+  },
+  {
+    path:'',
+    component:LayoutComponent,
+    children: [
+      {
+        path:'airport',
+        component:AirportComponent
       },
       {
-        path: 'new-flight',
-        component: NewFlightComponent
+        path:'city',
+        component:CityComponent
+      },
+      {
+        path:'all-bookings',
+        component:BookingsComponent
+      },
+      {
+        path:'all-Flights',
+        component:AllFlightsComponent
+      },
+      {
+        path:'new-flight',
+        component:NewFlightComponent
       }
     ]
   }
+
 ];
 
 @NgModule({
