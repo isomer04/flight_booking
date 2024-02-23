@@ -29,14 +29,13 @@
         <ul>
             <li *ngFor="let flight of flightList">
                 <span>{{ flight.name }}</span>
-                <button class="btn btn-success" (click)="bookTicket(flight)">Book</button>
+                <button class="btn btn-success" (click)="bookTicket(bookingObj.flightId)">Book</button>
             </li>
         </ul>
     </div>
     
     <div id="bookModel" class="modal">
         <div class="modal-content">
-            <span class="close" (click)="closeModel()">&times;</span>
             <h3>Book Ticket</h3>
             <!-- Add your book ticket form here -->
             <form>
@@ -58,6 +57,13 @@
                 </div>
                 <button class="btn btn-primary" (click)="addPassenger()">Add Passenger</button>
             </form>
+
+            
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success" (click)="onBookTicket()">Book Ticket</button>
         </div>
     </div>
 </div>

@@ -25,10 +25,16 @@ export class SearchComponent implements OnInit {
     "customerId": 0,
     "bookgingDate": new Date(),
     "totalAmount": 0,
-    "FlightBookingDetails": [ ]
+    "FlightBookingTravelers": [ ]
   }
   passengerList: any[] = [];
-  constructor(private master: MasterService) { }
+  constructor(private master: MasterService) { 
+
+    const isLocal = localStorage.getItem('flightCustomer');
+    if(isLocal != null) {
+      this.bookingObj.customerId = JSON.parse(isLocal).userId;
+    }
+  }
 
   ngOnInit(): void {
     this.loadAirports();
@@ -65,7 +71,20 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  bookTicket(flight: any) {
+  onBookTicket() {
+    this.bookingObj.FlightBookingTravelers = this.passengerList;
+    this.master.bookTicket(this.bookingObj).subscribe((res: any) => {
+      if(res.result) {
+        alert('Ticket Booked Successfully');
+        this.closeModel();
+      } else {
+        alert(res.message);
+      }
+    });
+  }
+
+  bookTicket(flightId: number) {
+    this.bookingObj.flightId = flightId;
     const model = document.getElementById('bookModel');
     if(model != null) {
       model.style.display = 'block';
